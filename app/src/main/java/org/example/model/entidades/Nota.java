@@ -6,11 +6,11 @@ public class Nota {
     private int valor;
     private String dcode;
 
-    public Nota(String tipo, String ra){
+    public Nota(String tipo, String ra, int valor, String dcode){
         this.tipo = tipo;
         this.ra = ra;
-        this.valor =  0;
-        this.dcode = null;
+        this.valor = valor;
+        this.dcode = dcode;
     }
 
     public String getRa(){
@@ -29,11 +29,4 @@ public class Nota {
         return valor;
     }
 
-    public void darNota(int n){
-        valor = n;
-    }
-
-    public void selecionarTurma(String code){
-        dcode = code;
-    }
 }
