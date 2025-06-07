@@ -44,6 +44,7 @@ public class DbManage {
             DbManage.criarTabela_Faltas();
             DbManage.tabelaAlunoTurma();
             DbManage.tabelaProfessorDisciplina();
+            DbManage.tabelaLogin();
 
             return 0;
         }
@@ -55,8 +56,8 @@ public class DbManage {
     public static void criarTabela_Professor() throws SQLException {
         String sqlProfessor = "CREATE TABLE IF NOT EXISTS Professor (" +
                 "id INT PRIMARY KEY AUTO_INCREMENT, " +
-                "nome VARCHAR(50) NOT NULL, " +
-                "pcode VARCHAR(50) NOT NULL UNIQUE" +
+                "nome VARCHAR (50) NOT NULL, " +
+                "pcode VARCHAR (50) NOT NULL UNIQUE" +
                 ");";
 
         if (con!=null) {
@@ -70,8 +71,8 @@ public class DbManage {
     public static void criarTabela_Disciplina() throws SQLException {
         String sqlDisciplina = "CREATE TABLE IF NOT EXISTS Disciplina (" +
                 "id INT PRIMARY KEY AUTO_INCREMENT, " +
-                "nome VARCHAR(50) NOT NULL, " +
-                "dcode VARCHAR(50) NOT NULL UNIQUE" +
+                "nome VARCHAR (50) NOT NULL, " +
+                "dcode VARCHAR (50) NOT NULL UNIQUE" +
                 ");";
 
         if (con!=null) {
@@ -84,10 +85,10 @@ public class DbManage {
     public static void criarTabela_Turma() throws SQLException {
         String sqlTurma = "CREATE TABLE IF NOT EXISTS Disciplina (" +
                 "id INT PRIMARY KEY AUTO_INCREMENT, " +
-                "nome VARCHAR(50) NOT NULL, " +
-                "dcode VARCHAR(50) NOT NULL UNIQUE, " +
+                "nome VARCHAR (50) NOT NULL, " +
+                "dcode VARCHAR (50) NOT NULL UNIQUE, " +
                 "professor_code VARCHAR(50), " +
-                "dcode VARCHAR(50), " +
+                "dcode VARCHAR (50), " +
                 "FOREIGN KEY (professor_code) REFERENCES Professor(pcode), " +
                 "FOREIGN KEY (dcode) REFERENCES Disciplina(dcode)" +
                 ");";
@@ -102,8 +103,8 @@ public class DbManage {
     public static void criarTabela_Aluno() throws SQLException {
         String sqlAluno = "CREATE TABLE IF NOT EXISTS Aluno (" +
                 "id INT PRIMARY KEY AUTO_INCREMENT, " +
-                "nome VARCHAR(50) NOT NULL, " +
-                "ra VARCHAR(50) NOT NULL UNIQUE" +
+                "nome VARCHAR (50) NOT NULL, " +
+                "ra VARCHAR (50) NOT NULL UNIQUE" +
                 ");";
 
         if (con!=null) {
@@ -116,10 +117,10 @@ public class DbManage {
     public static void criarTabela_Nota() throws SQLException {
         String sqlNota = "CREATE TABLE IF NOT EXISTS Nota (" +
                 "id INT PRIMARY KEY AUTO_INCREMENT, " +
-                "tipo VARCHAR(10) NOT NULL, " +
+                "tipo VARCHAR (10) NOT NULL, " +
                 "valor INT NOT NULL, " +
-                "ra VARCHAR(50), " +
-                "dcode VARCHAR(50), " +
+                "ra VARCHAR (50), " +
+                "dcode VARCHAR (50), " +
                 "FOREIGN KEY (ra) REFERENCES Aluno(ra), " +
                 "FOREIGN KEY (dcode) REFERENCES Disciplina(dcode)" +
                 ");";
@@ -135,8 +136,10 @@ public class DbManage {
         String slqFalta = "CREATE TABLE IF NOT EXISTS Falta(" +
                 "id INT PRIMARY KEY AUTO_INCREMENT, " +
                 "valor BIT NOT NULL, " +
-                "ra VARCHAR(50), " +
-                "tcode VARCHAR(50)" +
+                "ra VARCHAR (50), " +
+                "tcode VARCHAR (50), " +
+                "FOREIGN KEY (ra) REFERENCES Aluno(ra), " +
+                "FOREIGN KEY (tcode) REFERENCES Turma(tcode)" +
                 ");";
 
         if (con!=null) {
@@ -151,8 +154,8 @@ public class DbManage {
     public static void tabelaAlunoTurma() throws SQLException {
         String sqlAlunoTurma = "CREATE TABLE IF NOT EXISTS Aluno_turma (" +
                 "id INT PRIMARY KEY AUTO_INCREMENT, " +
-                "ra VARCHAR(50) NOT NULL, " +
-                "tcode VARCHAR(50) NOT NULL, " +
+                "ra VARCHAR (50) NOT NULL, " +
+                "tcode VARCHAR (50) NOT NULL, " +
                 "FOREIGN KEY (ra) REFERENCES Aluno(ra), " +
                 "FOREIGN KEY (tcode) REFERENCES Turma(tcode) " +
                 ");";
@@ -167,14 +170,29 @@ public class DbManage {
     public static void tabelaProfessorDisciplina() throws SQLException {
         String sqlProfessorDIsciplina = "CREATE TABLE IF NOT EXISTS Professor_Disciplina(" +
                 "id INT PRIMARY KEY AUTO_INCREMENT, " +
-                "pcode VARCHAR(50), " +
-                "dcode VARCHAR(50), " +
+                "pcode VARCHAR (50), " +
+                "dcode VARCHAR (50), " +
                 "FOREIGN KEY (pcode) REFERENCES Professor(pcode), " +
                 "FOREIGN KEY (dcode) REFERENCES Disciplina(dcode)" +
                 ");";
 
         if (con!=null) {
             PreparedStatement stmt = con.prepareStatement(sqlProfessorDIsciplina);
+            stmt.executeUpdate();
+            stmt.close();
+        }
+    }
+
+    public static void tabelaLogin() throws SQLException{
+        String sqlLogin = "CREATE TABLE IF NOT EXISTS Login(" +
+                "id INT PRIMARY KEY AUTO_INCREMENT, " +
+                "ucode VARCHAR (50) NOT NULL UNIQUE, " +
+                "senha_h TEXT NOT NULL, " +
+                "utipo VARCHAR (50)" +
+                ");";
+
+        if (con!=null) {
+            PreparedStatement stmt = con.prepareStatement(sqlLogin);
             stmt.executeUpdate();
             stmt.close();
         }

@@ -1,6 +1,8 @@
 package org.example.controles;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +14,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
+import org.example.model.dao.Login;
+import org.example.model.dao.UserDAO;
+import org.example.model.entidades.UserType;
+
 public class LoginController {
 
     @FXML
@@ -21,20 +27,22 @@ public class LoginController {
     private PasswordField txtSenha;
 
     @FXML
-    private void handleLogin(ActionEvent event) {
+    private void handleLogin(ActionEvent event) throws SQLException, IOException {
         String usuario = txtUsuario.getText();
         String senha = txtSenha.getText();
 
-        // Exemplo de validação simples — substitua por sua lógica real depois
-        if ("admin".equals(usuario) && "123".equals(senha)) {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/classroom/view/TeacherScreen.fxml"));
-                Parent root = loader.load();
+        Login.login(txtUsuario.getText(), txtSenha.getText());
 
+        // Exemplo de validação simples — substitua por sua lógica real depois
+        /*if ("admin".equals(usuario) && "123".equals(senha)) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/TeacherScreen.fxml"));
+                Parent root = loader.load();
                 Stage stage = new Stage();
                 stage.setTitle("Tela do Docente");
                 stage.setScene(new Scene(root));
                 stage.show();
+
 
                 // Fechar janela de login atual
                 Stage loginStage = (Stage) txtUsuario.getScene().getWindow();
@@ -45,7 +53,7 @@ public class LoginController {
             }
         } else {
             mostrarAlerta("Usuário ou senha incorretos!");
-        }
+        }*/
     }
 
     private void mostrarAlerta(String mensagem) {
