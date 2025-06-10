@@ -1,58 +1,51 @@
 package org.example.controles;
 
-import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.*;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
+import java.io.IOException;
 
 public class LoginController {
 
     @FXML
-    private TextField txtUsuario;
+    private TextField usernameField;
 
     @FXML
-    private PasswordField txtSenha;
+    private PasswordField passwordField;
 
     @FXML
     private void handleLogin(ActionEvent event) {
-        String usuario = txtUsuario.getText();
-        String senha = txtSenha.getText();
+        String username = usernameField.getText();
+        String password = passwordField.getText();
 
-        // Exemplo de validação simples — substitua por sua lógica real depois
-        if ("admin".equals(usuario) && "123".equals(senha)) {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/classroom/view/TeacherScreen.fxml"));
-                Parent root = loader.load();
-
-                Stage stage = new Stage();
-                stage.setTitle("Tela do Docente");
-                stage.setScene(new Scene(root));
-                stage.show();
-
-                // Fechar janela de login atual
-                Stage loginStage = (Stage) txtUsuario.getScene().getWindow();
-                loginStage.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-                mostrarAlerta("Erro ao carregar a próxima tela.");
-            }
+        if (username.equals("admin") && password.equals("admin123")) {
+            abrirTela("/view/AdminScreen.fxml");
+        } else if (username.startsWith("prof") && password.equals("prof123")) {
+            abrirTela("/view/TeacherScreen.fxml");
+        } else if (username.startsWith("aluno") && password.equals("aluno123")) {
+            abrirTela("/view/StudentScreen.fxml");
         } else {
-            mostrarAlerta("Usuário ou senha incorretos!");
+            System.out.println("Login inválido!");
         }
     }
 
-    private void mostrarAlerta(String mensagem) {
-        Alert alert = new Alert(AlertType.ERROR);
-        alert.setTitle("Erro de Login");
-        alert.setHeaderText(null);
-        alert.setContentText(mensagem);
-        alert.showAndWait();
+    private void abrirTela(String fxmlPath) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            Stage currentStage = (Stage) usernameField.getScene().getWindow();
+            currentStage.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
