@@ -1,0 +1,69 @@
+package org.example;
+
+import javafx.fxml.FXMLLoader;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.Parent;
+import javafx.scene.control.Label;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+
+import org.example.controles.LoginController;
+import org.example.controles.SceneManager;
+import org.example.controles.TeacherController;
+import org.example.model.dao.DbManage;
+
+import java.io.IOException;
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.Objects;
+
+
+public class Main extends Application {
+
+    @Override
+    public void start(Stage stage) throws SQLException, IOException {
+        initDb();
+        SceneManager sceneManager = new SceneManager(stage);
+
+        FXMLLoader loginL = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/view/LoginScreen.fxml")));
+        Parent loginRoot = loginL.load();
+        LoginController lControl = loginL.getController();
+        lControl.setSceneManager(sceneManager);
+
+        FXMLLoader teacherL = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/view/TeacherScreen.fxml")));
+        Parent teacherRoot = teacherL.load();
+        TeacherController tControl = teacherL.getController();
+        tControl.setSceneManager(sceneManager);
+
+        sceneManager.addScene("login", new Scene(loginRoot, 400, 300), lControl);
+        sceneManager.addScene("teacher", new Scene(teacherRoot, 400, 300), tControl);
+
+        sceneManager.switchTo("login");
+        stage.setTitle("Login");
+        stage.show();
+
+        /*
+        String javaVersion = System.getProperty("java.version");
+        String javafxVersion = System.getProperty("javafx.version");
+        Label l = new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
+        Scene scene = new Scene(new StackPane(l), 640, 480);
+        stage.setScene(scene);
+        stage.show();
+         */
+    }
+
+    public void initDb() throws SQLException {
+        DbManage.conectarDb();
+        if(DbManage.initDb()==0){
+            System.out.println("Tudo certo e rodando");
+        } else {
+            System.out.println("Algo deu errado");
+        }
+    }
+
+    public static void main(String[] args) {
+        launch();
+    }
+
+}

@@ -1,16 +1,16 @@
 package org.example.model.entidades;
 
 public class Nota {
-    private final String tipo;
+    private final TipoNotas tipo;
     private final String ra;
     private int valor;
     private String dcode;
 
-    public Nota(String tipo, String ra){
+    public Nota(TipoNotas tipo, String ra, int valor, String dcode){
         this.tipo = tipo;
         this.ra = ra;
-        this.valor =  0;
-        this.dcode = null;
+        this.valor = valor;
+        this.dcode = dcode;
     }
 
     public String getRa(){
@@ -22,18 +22,11 @@ public class Nota {
     }
 
     public String getTipo(){
-        return tipo;
+        return tipo.toString();
     }
 
     public int getValor(){
         return valor;
     }
 
-    public void darNota(int n){
-        valor = n;
-    }
-
-    public void selecionarTurma(String code){
-        dcode = code;
-    }
 }
