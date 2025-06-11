@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="classroom.controller.LoginController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="org.example.controles.LoginController">
    <children>
-      <VBox fx:id="txtUsuario" alignment="TOP_CENTER" layoutX="250.0" layoutY="71.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+      <VBox alignment="TOP_CENTER" layoutX="250.0" layoutY="71.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
          <children>
             <Label text="Login" />
             <TextField fx:id="txtUsuario" text="usuário:" />

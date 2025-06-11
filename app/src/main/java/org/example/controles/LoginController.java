@@ -37,6 +37,11 @@ public class LoginController {
                     TeacherController teacherController = sceneManager.getCOntroller("teacher");
                     sceneManager.switchTo("teacher");
                     break;
+
+                case ADMIN:
+                    AdminController adminController = sceneManager.getCOntroller("admin");
+                    sceneManager.switchTo("admin");
+                    break;
             }
 
         }

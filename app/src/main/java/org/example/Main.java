@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
+import org.example.controles.AdminController;
 import org.example.controles.LoginController;
 import org.example.controles.SceneManager;
 import org.example.controles.TeacherController;
@@ -36,8 +37,14 @@ public class Main extends Application {
         TeacherController tControl = teacherL.getController();
         tControl.setSceneManager(sceneManager);
 
-        sceneManager.addScene("login", new Scene(loginRoot, 400, 300), lControl);
-        sceneManager.addScene("teacher", new Scene(teacherRoot, 400, 300), tControl);
+        FXMLLoader adminL = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/view/AdminScreen.fxml")));
+        Parent adminRoot = adminL.load();
+        AdminController adminController = adminL.getController();
+        adminController.setSceneManager(sceneManager);
+
+        sceneManager.addScene("login", new Scene(loginRoot, 600, 400), lControl);
+        sceneManager.addScene("teacher", new Scene(teacherRoot, 400, 600), tControl);
+        sceneManager.addScene("admin", new Scene(adminRoot, 400, 600), adminController);
 
         sceneManager.switchTo("login");
         stage.setTitle("Login");

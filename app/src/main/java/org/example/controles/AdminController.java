@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
 public class AdminController {
+    private SceneManager sceneManager;
 
     @FXML
     private TextField professorNomeField;
@@ -59,5 +60,14 @@ public class AdminController {
     private void handleSalvarDisciplina() {
         String nomeDisciplina = disciplinaNomeField.getText();
         System.out.println("Disciplina salva: " + nomeDisciplina);
+    }
+
+    @FXML
+    private void handleVoltar(){
+        ;
+    }
+
+    public void setSceneManager(SceneManager manager){
+        this.sceneManager = manager;
     }
 }

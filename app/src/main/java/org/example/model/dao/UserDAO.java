@@ -64,7 +64,7 @@ public class UserDAO {
             return rs.next();
         }
 
-        return Boolean.FALSE;
+        return false;
     }
 
     public Boolean verificaAluno(String ucode) throws SQLException {
@@ -79,7 +79,7 @@ public class UserDAO {
             return rs.next();
         }
 
-        return Boolean.FALSE;
+        return false;
     }
 
     public void modificarSenha(User user, String npasswd){
