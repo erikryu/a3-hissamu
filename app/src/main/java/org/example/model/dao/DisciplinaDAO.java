@@ -116,5 +116,59 @@ public class DisciplinaDAO {
             }
         }
     }
+
+    public List<Disciplina> listarDisciplinasPorProfessor(String pcode) {
+        List<Disciplina> disciplinas = new ArrayList<>();
+        String sql = "SELECT d.nome, d.dcode " +
+                "FROM Professor p " +
+                "INNER JOIN Professor_Disciplina pd ON p.pcode = pd.pcode " +
+                "INNER JOIN Disciplina d ON pd.dcode = d.dcode " +
+                "WHERE p.pcode =?;";
+
+        if (connection!=null){
+            try {
+                PreparedStatement stmt = connection.prepareStatement(sql);
+
+                stmt.setString(1, pcode);
+                ResultSet rs = stmt.executeQuery();
+
+                while (rs.next()){
+                    String dnome = rs.getString("nome");
+                    String dcode = rs.getString("dcode");
+
+                    disciplinas.add(new Disciplina(dnome, dcode));
+                }
+
+                stmt.close();
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        return disciplinas;
+    }
+
+    public List<Disciplina> listarDisciplinasPorAluno(String ra) throws SQLException {
+        List<Disciplina> disciplinas = new ArrayList<>();
+        String sql = "SELECT DISTINCT D.dcode, D.nome " +
+                "FROM Aluno A " +
+                "JOIN Aluno_turma AT ON A.ra = AT.ra " +
+                "JOIN Turma T ON AT.tcode = T.tcode " +
+                "JOIN Disciplina D ON T.dcode = D.dcode " +
+                "WHERE A.ra = ?";
+
+        try (Connection conn = DbManage.conectarDb();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, ra);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Disciplina disciplina = new Disciplina(rs.getString("nome"), rs.getString("nome"));
+                disciplinas.add(disciplina);
+            }
+        }
+        return disciplinas;
+    }
     
 }

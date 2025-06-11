@@ -1,12 +1,12 @@
 package org.example.model.entidades;
 
 public class Nota {
-    private final String tipo;
+    private final TipoNotas tipo;
     private final String ra;
     private int valor;
     private String dcode;
 
-    public Nota(String tipo, String ra, int valor, String dcode){
+    public Nota(TipoNotas tipo, String ra, int valor, String dcode){
         this.tipo = tipo;
         this.ra = ra;
         this.valor = valor;
@@ -22,7 +22,7 @@ public class Nota {
     }
 
     public String getTipo(){
-        return tipo;
+        return tipo.toString();
     }
 
     public int getValor(){

@@ -5,20 +5,16 @@ import java.sql.SQLException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.stage.Stage;
 
 import org.example.model.dao.Login;
-import org.example.model.dao.UserDAO;
 import org.example.model.entidades.UserType;
 
 public class LoginController {
+    private SceneManager sceneManager;
 
     @FXML
     private TextField txtUsuario;
@@ -26,12 +22,25 @@ public class LoginController {
     @FXML
     private PasswordField txtSenha;
 
+    public void setSceneManager(SceneManager manager) {
+        this.sceneManager = manager;
+    }
+
     @FXML
     private void handleLogin(ActionEvent event) throws SQLException, IOException {
         String usuario = txtUsuario.getText();
         String senha = txtSenha.getText();
 
-        Login.login(txtUsuario.getText(), txtSenha.getText());
+        if(Login.login(txtUsuario.getText(), txtSenha.getText())){
+            switch (UserType.utipo) {
+                case PROFESSOR:
+                    TeacherController teacherController = sceneManager.getCOntroller("teacher");
+                    sceneManager.switchTo("teacher");
+                    break;
+            }
+
+        }
+        System.out.println(UserType.utipo.toString());
 
         // Exemplo de validação simples — substitua por sua lógica real depois
         /*if ("admin".equals(usuario) && "123".equals(senha)) {
@@ -55,6 +64,8 @@ public class LoginController {
             mostrarAlerta("Usuário ou senha incorretos!");
         }*/
     }
+
+
 
     private void mostrarAlerta(String mensagem) {
         Alert alert = new Alert(AlertType.ERROR);

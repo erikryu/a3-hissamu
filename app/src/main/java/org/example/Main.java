@@ -7,6 +7,10 @@ import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+
+import org.example.controles.LoginController;
+import org.example.controles.SceneManager;
+import org.example.controles.TeacherController;
 import org.example.model.dao.DbManage;
 
 import java.io.IOException;
@@ -20,9 +24,22 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws SQLException, IOException {
         initDb();
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/LoginScreen.fxml")));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
+        SceneManager sceneManager = new SceneManager(stage);
+
+        FXMLLoader loginL = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/view/LoginScreen.fxml")));
+        Parent loginRoot = loginL.load();
+        LoginController lControl = loginL.getController();
+        lControl.setSceneManager(sceneManager);
+
+        FXMLLoader teacherL = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/view/TeacherScreen.fxml")));
+        Parent teacherRoot = teacherL.load();
+        TeacherController tControl = teacherL.getController();
+        tControl.setSceneManager(sceneManager);
+
+        sceneManager.addScene("login", new Scene(loginRoot, 400, 300), lControl);
+        sceneManager.addScene("teacher", new Scene(teacherRoot, 400, 300), tControl);
+
+        sceneManager.switchTo("login");
         stage.setTitle("Login");
         stage.show();
 

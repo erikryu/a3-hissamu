@@ -18,11 +18,11 @@
                <font>
                   <Font name="System Italic" size="22.0" />
                </font></Label>
-            <Label fx:id="comboUC" text="UC">
+            <Label text="UC">
                <font>
                   <Font name="System Bold Italic" size="12.0" />
                </font></Label>
-            <ComboBox prefHeight="26.0" prefWidth="130.0" promptText="SELECIONAR UC" />
+            <ComboBox fx:id="comboUC" prefHeight="26.0" prefWidth="130.0" promptText="SELECIONAR UC" />
             <HBox prefHeight="91.0" prefWidth="514.0">
                <children>
                   <TableView fx:id="tabelaAlunos" prefHeight="91.0" prefWidth="550.0">

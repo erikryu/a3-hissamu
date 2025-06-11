@@ -83,10 +83,10 @@ public class DbManage {
     }
 
     public static void criarTabela_Turma() throws SQLException {
-        String sqlTurma = "CREATE TABLE IF NOT EXISTS Disciplina (" +
+        String sqlTurma = "CREATE TABLE IF NOT EXISTS Turma (" +
                 "id INT PRIMARY KEY AUTO_INCREMENT, " +
                 "nome VARCHAR (50) NOT NULL, " +
-                "dcode VARCHAR (50) NOT NULL UNIQUE, " +
+                "tcode VARCHAR (50) NOT NULL UNIQUE, " +
                 "professor_code VARCHAR(50), " +
                 "dcode VARCHAR (50), " +
                 "FOREIGN KEY (professor_code) REFERENCES Professor(pcode), " +
@@ -133,9 +133,9 @@ public class DbManage {
     }
 
     public static void criarTabela_Faltas() throws SQLException {
-        String slqFalta = "CREATE TABLE IF NOT EXISTS Falta(" +
+        String slqFalta = "CREATE TABLE IF NOT EXISTS Faltas(" +
                 "id INT PRIMARY KEY AUTO_INCREMENT, " +
-                "valor BIT NOT NULL, " +
+                "valor INT NOT NULL, " +
                 "ra VARCHAR (50), " +
                 "tcode VARCHAR (50), " +
                 "FOREIGN KEY (ra) REFERENCES Aluno(ra), " +
