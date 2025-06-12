@@ -137,6 +137,7 @@ public class DbManage {
                 "id INT PRIMARY KEY AUTO_INCREMENT, " +
                 "valor INT NOT NULL, " +
                 "ra VARCHAR (50), " +
+                "data DATE NOT NULL UNIQUE, " +
                 "tcode VARCHAR (50), " +
                 "FOREIGN KEY (ra) REFERENCES Aluno(ra), " +
                 "FOREIGN KEY (tcode) REFERENCES Turma(tcode)" +
