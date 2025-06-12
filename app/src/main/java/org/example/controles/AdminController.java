@@ -2,6 +2,7 @@ package org.example.controles;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import org.example.model.entidades.UserType;
 
 public class AdminController {
     private SceneManager sceneManager;
@@ -64,7 +65,8 @@ public class AdminController {
 
     @FXML
     private void handleVoltar(){
-        ;
+        sceneManager.switchTo("login");
+        UserType.utipo = UserType.U_Tipo.NULO;
     }
 
     public void setSceneManager(SceneManager manager){

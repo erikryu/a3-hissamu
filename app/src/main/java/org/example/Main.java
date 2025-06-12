@@ -24,7 +24,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws SQLException, IOException {
-        initDb();
         SceneManager sceneManager = new SceneManager(stage);
 
         FXMLLoader loginL = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/view/LoginScreen.fxml")));
