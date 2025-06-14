@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
 public class StudentController {
+    private SceneManager sceneManager;
 
     @FXML
     private Label nomeLabel;
@@ -35,5 +36,9 @@ public class StudentController {
         nomeLabel.setText(aluno.getNome());
         raLabel.setText(aluno.getRa());
 
+    }
+
+    public void setSceneManager(SceneManager manager) {
+        this.sceneManager = manager;
     }
 }

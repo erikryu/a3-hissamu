@@ -8,10 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-import org.example.controles.AdminController;
-import org.example.controles.LoginController;
-import org.example.controles.SceneManager;
-import org.example.controles.TeacherController;
+import org.example.controles.*;
 import org.example.model.dao.DbManage;
 
 import java.io.IOException;
@@ -41,9 +38,15 @@ public class Main extends Application {
         AdminController adminController = adminL.getController();
         adminController.setSceneManager(sceneManager);
 
+        FXMLLoader alunoL = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/view/StudentScreen.fxml")));
+        Parent alunoRoot = alunoL.load();
+        StudentController alunoController = alunoL.getController();
+        alunoController.setSceneManager(sceneManager);
+
         sceneManager.addScene("login", new Scene(loginRoot, 600, 400), lControl);
         sceneManager.addScene("teacher", new Scene(teacherRoot, 800, 600), tControl);
         sceneManager.addScene("admin", new Scene(adminRoot, 400, 600), adminController);
+        sceneManager.addScene("aluno", new Scene(alunoRoot, 800, 600), alunoController);
 
         sceneManager.switchTo("login");
         stage.setTitle("Login");
