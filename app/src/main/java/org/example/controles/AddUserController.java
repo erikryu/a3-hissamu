@@ -20,5 +20,7 @@ public class AddUserController {
         String senha = usenha.getText();
 
         Login.registrar(codigo, senha);
+
+        Utils.limparCampos(ucode, usenha);
     }
 }

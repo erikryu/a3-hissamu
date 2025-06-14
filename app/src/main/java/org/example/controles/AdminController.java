@@ -1,5 +1,8 @@
 package org.example.controles;
 
+import jdk.jshell.execution.Util;
+import org.example.controles.Utils;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -7,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
 import org.example.model.dao.DbManage;
 import org.example.model.entidades.UserType;
 
@@ -66,6 +70,8 @@ public class AdminController {
         mprofessor.adicionarProfessor(new Professor(nome, codigo));
 
         DbManage.desconectarDb();
+
+        Utils.limparCampos(professorNomeField, codigoDoProfessor);
     }
 
     @FXML
@@ -77,6 +83,8 @@ public class AdminController {
         maluno.adicionarAluno(new Aluno(nome, ra));
 
         DbManage.desconectarDb();
+
+        Utils.limparCampos(nomeAluno, alunoRa);
     }
 
     @FXML
@@ -90,6 +98,8 @@ public class AdminController {
         mturma.adicionarTurma(new Turma(nomeTurma, codigo, pcode, dcode));
 
         DbManage.desconectarDb();
+
+        Utils.limparCampos(turmaNomeField, codigoTurma, codigoProfessorTurma, codigoDisciplinaTurma);
     }
 
     @FXML
@@ -101,26 +111,25 @@ public class AdminController {
         mDisciplina.adicionarDisciplina(new Disciplina(dnome, codigo));
 
         DbManage.desconectarDb();
+
+        Utils.limparCampos(nomeDisciplina, codigoDisciplina);
     }
 
     @FXML
     private void adicionarNovoUsuario() {
         try {
-            // Carrega o FXML da nova janela
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/AddUser.fxml"));
             Parent root = loader.load();
 
-            // Configura o Stage (janela)
             Stage stage = new Stage();
             stage.setTitle("Novo Usuário");
             stage.initModality(Modality.APPLICATION_MODAL); // Bloqueia a janela principal
             stage.setScene(new Scene(root));
 
-            // Exibe a janela
             stage.show();
 
         } catch (IOException e) {
-            e.printStackTrace(); // Trate erros adequadamente
+            e.printStackTrace();
         }
     }
 
