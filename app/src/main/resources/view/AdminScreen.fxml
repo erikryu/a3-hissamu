@@ -5,56 +5,59 @@
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controles.AdminController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/24" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controles.AdminController">
    <children>
-      <TitledPane animated="false" layoutX="14.0" layoutY="50.0" prefHeight="344.0" prefWidth="136.0" text="Adicionar Professor">
+      <TitledPane animated="false" layoutX="28.0" layoutY="71.0" prefHeight="226.0" prefWidth="180.0" text="Adicionar Professor">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="149.0" prefWidth="134.0">
                <children>
-                  <TextField fx:id="professorNomeField" layoutY="1.0" prefWidth="120.0" />
-                  <TextField fx:id="professorDisciplinaField" layoutY="30.0" prefWidth="120.0" />
-                  <TextField fx:id="professorUCField" layoutY="60.0" prefWidth="120.0" />
-                  <Button layoutX="17.0" layoutY="159.0" onAction="#handleSalvarProfessor" text="Salvar Professor" />
-                  <TextField fx:id="professorEmailField" layoutY="107.0" prefHeight="26.0" prefWidth="136.0" promptText="E-mail" />
+                  <TextField fx:id="professorNomeField" layoutX="28.0" layoutY="52.0" prefWidth="120.0" promptText="Nome" />
+                  <TextField fx:id="codigoDoProfessor" layoutX="28.0" layoutY="101.0" prefWidth="120.0" promptText="Codigo" />
+                  <Button layoutX="19.0" layoutY="163.0" onAction="#handleSalvarProfessor" text="Salvar Professor" />
                </children>
             </AnchorPane>
          </content>
       </TitledPane>
 
-      <TitledPane animated="false" layoutX="160.0" layoutY="50.0" prefHeight="344.0" prefWidth="136.0" text="Adicionar Aluno">
+      <TitledPane animated="false" layoutX="212.0" layoutY="71.0" prefHeight="228.0" prefWidth="184.0" text="Adicionar Aluno">
          <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="198.0" prefWidth="134.0">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="182.0">
                <children>
-                  <TextField fx:id="alunoRAField" layoutY="1.0" prefWidth="120.0" />
-                  <TextField fx:id="alunoNomeField" layoutY="30.0" prefWidth="120.0" />
-                  <Button layoutX="26.0" layoutY="159.0" onAction="#handleSalvarAluno" text="Salvar Aluno" />
+                  <TextField fx:id="nomeAluno" layoutX="31.0" layoutY="49.0" prefWidth="120.0" promptText="Nome" />
+                  <TextField fx:id="alunoRa" layoutX="31.0" layoutY="102.0" prefWidth="120.0" promptText="RA" />
+                  <Button layoutX="35.0" layoutY="165.0" onAction="#handleSalvarAluno" text="Salvar Aluno" />
                </children>
             </AnchorPane>
          </content>
       </TitledPane>
 
-      <TitledPane animated="false" layoutX="310.0" layoutY="50.0" prefHeight="344.0" prefWidth="136.0" text="Adicionar Turma">
+      <TitledPane animated="false" layoutX="396.0" layoutY="71.0" prefHeight="228.0" prefWidth="184.0" text="Adicionar Turma">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="204.0" prefWidth="197.0">
+               <children>
+                  <TextField fx:id="turmaNomeField" layoutX="31.0" layoutY="14.0" prefWidth="120.0" promptText="Nome" />
+                  <Button layoutX="35.0" layoutY="165.0" onAction="#handleSalvarTurma" text="Salvar Turma" />
+                  <TextField fx:id="codigoTurma" layoutX="30.0" layoutY="52.0" prefWidth="120.0" promptText="Codigo" />
+                  <TextField fx:id="codigoProfessorTurma" layoutX="30.0" layoutY="89.0" prefWidth="120.0" promptText="Docente" />
+                  <TextField fx:id="codigoDisciplinaTurma" layoutX="30.0" layoutY="125.0" prefWidth="120.0" promptText="Disciplina" />
+               </children>
+            </AnchorPane>
+         </content>
+      </TitledPane>
+
+      <TitledPane alignment="CENTER" animated="false" layoutX="580.0" layoutY="71.0" prefHeight="228.0" prefWidth="192.0" text="Adicionar Disciplina">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0">
                <children>
-                  <TextField fx:id="turmaNomeField" layoutY="1.0" prefWidth="120.0" />
-                  <Button layoutX="18.0" layoutY="159.0" onAction="#handleSalvarTurma" text="Salvar Turma" />
+                  <TextField fx:id="nomeDisciplina" layoutX="35.0" layoutY="44.0" prefWidth="120.0" promptText="Nome" />
+                  <Button layoutX="20.0" layoutY="165.0" onAction="#handleSalvarDisciplina" text="Salvar Disciplina" />
+                  <TextField fx:id="codigoDisciplina" layoutX="35.0" layoutY="102.0" prefWidth="120.0" promptText="Codigo" />
                </children>
             </AnchorPane>
          </content>
       </TitledPane>
 
-      <TitledPane animated="false" layoutX="460.0" layoutY="50.0" prefHeight="344.0" prefWidth="138.0" text="Adicionar Disciplina">
-         <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0">
-               <children>
-                  <TextField fx:id="disciplinaNomeField" layoutY="1.0" prefWidth="120.0" />
-                  <Button layoutX="17.0" layoutY="159.0" onAction="#handleSalvarDisciplina" text="Salvar Disciplina" />
-               </children>
-            </AnchorPane>
-         </content>
-      </TitledPane>
-
-      <Button layoutX="10.0" layoutY="10.0" onAction="#handleVoltar" text="Voltar" />
+      <Button layoutX="28.0" layoutY="14.0" onAction="#handleVoltar" text="Voltar" />
+      <Button layoutX="660.0" layoutY="14.0" mnemonicParsing="false" onAction="#adicionarNovoUsuario" text="Novo Usuario" />
    </children>
 </AnchorPane>

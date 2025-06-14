@@ -42,7 +42,7 @@ public class Main extends Application {
         adminController.setSceneManager(sceneManager);
 
         sceneManager.addScene("login", new Scene(loginRoot, 600, 400), lControl);
-        sceneManager.addScene("teacher", new Scene(teacherRoot, 400, 600), tControl);
+        sceneManager.addScene("teacher", new Scene(teacherRoot, 800, 600), tControl);
         sceneManager.addScene("admin", new Scene(adminRoot, 400, 600), adminController);
 
         sceneManager.switchTo("login");

@@ -19,8 +19,8 @@ public class DisciplinaDAO {
         this.connection = connection;
     }
     
-    public void adicionarDisciplina(Disciplina disciplina, String pcode){
-        String add_sql = "INSERT INTO Disciplina (nome, dcode, professor_code) VALUES (?, ?, ?);";
+    public void adicionarDisciplina(Disciplina disciplina){
+        String add_sql = "INSERT INTO Disciplina (nome, dcode) VALUES (?, ?);";
         
         if (connection!=null){
             try {
@@ -28,7 +28,6 @@ public class DisciplinaDAO {
                 
                 stmt.setString(1, disciplina.getNome());
                 stmt.setString(2, disciplina.getdCode());
-                stmt.setString(3, pcode);
                 
                 stmt.executeUpdate();
                 stmt.close();

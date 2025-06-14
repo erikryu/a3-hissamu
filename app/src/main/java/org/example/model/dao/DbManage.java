@@ -135,7 +135,7 @@ public class DbManage {
     public static void criarTabela_Faltas() throws SQLException {
         String slqFalta = "CREATE TABLE IF NOT EXISTS Faltas(" +
                 "id INT PRIMARY KEY AUTO_INCREMENT, " +
-                "valor INT NOT NULL, " +
+                "valor BIT NOT NULL, " +
                 "ra VARCHAR (50), " +
                 "data DATE NOT NULL UNIQUE, " +
                 "tcode VARCHAR (50), " +

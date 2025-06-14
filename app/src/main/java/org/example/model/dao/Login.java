@@ -5,10 +5,12 @@ import org.example.model.entidades.UserType;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import org.example.model.entidades.User;
 import org.example.model.dao.UserDAO;
 

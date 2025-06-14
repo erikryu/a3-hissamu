@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="300.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/24" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controles.AddUserController">
+   <children>
+      <Button layoutX="118.0" layoutY="208.0" onAction="#salvarUsuario" mnemonicParsing="false" text="Adicionar" />
+      <TextField fx:id="ucode" layoutX="62.0" layoutY="76.0" prefHeight="24.0" prefWidth="175.0" promptText="Codigo" />
+      <TextField fx:id="usenha" layoutX="61.0" layoutY="138.0" prefHeight="24.0" prefWidth="176.0" promptText="Senha"/>
+   </children>
+</AnchorPane>

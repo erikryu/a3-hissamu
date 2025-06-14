@@ -71,7 +71,6 @@ public class LoginController {
     }
 
 
-
     private void mostrarAlerta(String mensagem) {
         Alert alert = new Alert(AlertType.ERROR);
         alert.setTitle("Erro de Login");
