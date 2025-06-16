@@ -36,5 +36,6 @@
          </font>
       </Label>
       <Button fx:id="btnSalvar" layoutX="703.0" layoutY="21.0" mnemonicParsing="false" onAction="#atualizar" text="Atualizar" textFill="#df0000" />
+      <Button layoutX="703.0" layoutY="100.0" mnemonicParsing="false" onAction="#salvar" text="Salvar" />
    </children>
 </AnchorPane>

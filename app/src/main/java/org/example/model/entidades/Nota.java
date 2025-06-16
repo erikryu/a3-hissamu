@@ -13,6 +13,10 @@ public class Nota {
         this.dcode = dcode;
     }
 
+    public TipoNotas getTipoEnum(){
+        return tipo;
+    }
+
     public String getRa(){
         return ra;
     }
@@ -29,4 +33,7 @@ public class Nota {
         return valor;
     }
 
+    public void setValor(int novoValor) {
+        this.valor = novoValor;
+    }
 }
