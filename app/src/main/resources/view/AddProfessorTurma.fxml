@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="300.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/24" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controles.AddProfessorTurma">
+   <children>
+      <TextField fx:id="pcode" layoutX="95.0" layoutY="67.0" promptText="Professor" />
+      <TextField fx:id="dcode" layoutX="95.0" layoutY="125.0" promptText="Disciplina" />
+      <Button layoutX="105.0" layoutY="207.0" mnemonicParsing="false" onAction="#adicionar" text="Adicionar" />
+   </children>
+</AnchorPane>

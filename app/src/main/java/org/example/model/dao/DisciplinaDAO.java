@@ -56,7 +56,7 @@ public class DisciplinaDAO {
     
     public List<Disciplina> listarTodos(){
         List<Disciplina> disciplinas = new ArrayList<>();
-        String sql = "SELECT id, nome, dcode, professor_code FROM Disciplina";
+        String sql = "SELECT id, nome, dcode FROM Disciplina";
         
         if (connection!=null){
             try {
@@ -78,7 +78,7 @@ public class DisciplinaDAO {
     }
     
     public Disciplina listarPorCodigo(String dcode){
-        String sql = "SELECT id, nome, dcode, professor_code FROM Disciplina WHERE dcode=?";
+        String sql = "SELECT id, nome, dcode FROM Disciplina WHERE dcode=?";
         Disciplina disciplina = null;
         
         if(connection!=null) {
@@ -98,15 +98,14 @@ public class DisciplinaDAO {
         return disciplina;
     }
     
-    public void atualizarDisciplina(Disciplina disciplina, String pcode){
-        String sql = "UPDATE Disciplina SET nome=?, professor_code=? WHERE dcode=?";
+    public void atualizarDisciplina(Disciplina disciplina){
+        String sql = "UPDATE Disciplina SET nome=? WHERE dcode=?";
         if (connection!=null){
             try {
                 PreparedStatement stmt = connection.prepareStatement(sql);
                 
                 stmt.setString(1, disciplina.getNome());
-                stmt.setString(2, pcode);
-                stmt.setString(3, disciplina.getdCode());
+                stmt.setString(2, disciplina.getdCode());
                 
                 stmt.executeUpdate();
                 stmt.close();
@@ -168,6 +167,22 @@ public class DisciplinaDAO {
             }
         }
         return disciplinas;
+    }
+
+    public void adicionarProfessor(String pcode, String dcode) throws SQLException{
+        String sql = "INSERT INTO Professor_Disciplina (pcode, dcode) VALUES (?, ?);";
+        ProfessorDAO mprofessor = new ProfessorDAO(connection);
+        DisciplinaDAO mdisciplina = new DisciplinaDAO(connection);
+
+        if (connection!=null) {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+
+            stmt.setString(1, mprofessor.listarPorCodigo(pcode).getPcode());
+            stmt.setString(2, mdisciplina.listarPorCodigo(dcode).getdCode());
+
+            stmt.executeUpdate();
+            stmt.close();
+        }
     }
     
 }

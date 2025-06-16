@@ -1,5 +1,6 @@
 package org.example.model.dao;
 
+import org.example.model.entidades.Aluno;
 import org.example.model.entidades.Disciplina;
 import org.example.model.entidades.Turma;
 
@@ -122,6 +123,22 @@ public class TurmaDAO {
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
             }
+        }
+    }
+
+    public void adicionarAluno(String ra, String tcode) throws SQLException{
+        String sql = "INSERT INTO Aluno_turma (ra, tcode) VALUES (?, ?);";
+        AlunoDAO maluno = new AlunoDAO(connection);
+        TurmaDAO mturma = new TurmaDAO(connection);
+
+        if (connection!=null) {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+
+            stmt.setString(1, maluno.listarPorRa(ra).getRa());
+            stmt.setString(2, mturma.listarPorCodigo(tcode).getCode());
+
+            stmt.executeUpdate();
+            stmt.close();
         }
     }
 }

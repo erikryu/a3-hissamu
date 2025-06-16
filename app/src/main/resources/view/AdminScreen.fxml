@@ -7,7 +7,7 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/24" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controles.AdminController">
    <children>
-      <TitledPane animated="false" layoutX="28.0" layoutY="71.0" prefHeight="226.0" prefWidth="180.0" text="Adicionar Professor">
+      <TitledPane animated="false" layoutX="28.0" layoutY="71.0" prefHeight="230.0" prefWidth="185.0" text="Adicionar Professor">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="149.0" prefWidth="134.0">
                <children>
@@ -19,9 +19,9 @@
          </content>
       </TitledPane>
 
-      <TitledPane animated="false" layoutX="212.0" layoutY="71.0" prefHeight="228.0" prefWidth="184.0" text="Adicionar Aluno">
+      <TitledPane animated="false" layoutX="212.0" layoutY="71.0" prefHeight="230.0" prefWidth="185.0" text="Adicionar Aluno">
          <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="182.0">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="192.0" prefWidth="187.0">
                <children>
                   <TextField fx:id="nomeAluno" layoutX="31.0" layoutY="49.0" prefWidth="120.0" promptText="Nome" />
                   <TextField fx:id="alunoRa" layoutX="31.0" layoutY="102.0" prefWidth="120.0" promptText="RA" />
@@ -31,7 +31,7 @@
          </content>
       </TitledPane>
 
-      <TitledPane animated="false" layoutX="396.0" layoutY="71.0" prefHeight="228.0" prefWidth="184.0" text="Adicionar Turma">
+      <TitledPane animated="false" layoutX="396.0" layoutY="71.0" prefHeight="230.0" prefWidth="185.0" text="Adicionar Turma">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="204.0" prefWidth="197.0">
                <children>
@@ -45,7 +45,7 @@
          </content>
       </TitledPane>
 
-      <TitledPane alignment="CENTER" animated="false" layoutX="580.0" layoutY="71.0" prefHeight="228.0" prefWidth="192.0" text="Adicionar Disciplina">
+      <TitledPane alignment="CENTER" animated="false" layoutX="580.0" layoutY="71.0" prefHeight="230.0" prefWidth="185.0" text="Adicionar Disciplina">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0">
                <children>
@@ -58,6 +58,8 @@
       </TitledPane>
 
       <Button layoutX="28.0" layoutY="14.0" onAction="#handleVoltar" text="Voltar" />
-      <Button layoutX="660.0" layoutY="14.0" mnemonicParsing="false" onAction="#adicionarNovoUsuario" text="Novo Usuario" />
+      <Button layoutX="28.0" layoutY="561.0" mnemonicParsing="false" onAction="#adicionarNovoUsuario" text="Novo Usuario" />
+      <Button layoutX="437.0" layoutY="14.0" mnemonicParsing="false" onAction="#adicionarAluno" text="Aluno/Turma" />
+      <Button layoutX="589.0" layoutY="14.0" mnemonicParsing="false" onAction="#adicionarProfessor" text="Professor/Disciplina" />
    </children>
 </AnchorPane>

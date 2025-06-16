@@ -139,6 +139,42 @@ public class AdminController {
         UserType.utipo = UserType.U_Tipo.NULO;
     }
 
+    @FXML
+    private void adicionarAluno(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/AddAlunoTurma.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setTitle("Adicionar Aluno");
+            stage.initModality(Modality.APPLICATION_MODAL); // Bloqueia a janela principal
+            stage.setScene(new Scene(root));
+
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void adicionarProfessor(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/AddProfessorTurma.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setTitle("Adicionar Professor");
+            stage.initModality(Modality.APPLICATION_MODAL); // Bloqueia a janela principal
+            stage.setScene(new Scene(root));
+
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void setSceneManager(SceneManager manager){
         this.sceneManager = manager;
     }

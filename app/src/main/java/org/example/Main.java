@@ -69,6 +69,7 @@ public class Main extends Application {
         } else {
             System.out.println("Algo deu errado");
         }
+        DbManage.desconectarDb();
     }
 
     public static void main(String[] args) {

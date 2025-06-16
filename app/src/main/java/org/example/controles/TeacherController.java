@@ -58,7 +58,7 @@ public class TeacherController {
     public void initialize() throws SQLException {
         // Simulando lista de UCs
 
-        listaDeDisciplinas.addAll(disciplinaDAO.listarDisciplinasPorProfessor("000001"));
+        listaDeDisciplinas.addAll(disciplinaDAO.listarDisciplinasPorProfessor("PROFESSOR002"));
         comboUC.setItems(listaDeDisciplinas);
         // Criar função em alunodao para listar alunos por professor
         colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
