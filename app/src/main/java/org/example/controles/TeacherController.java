@@ -1,10 +1,8 @@
 package org.example.controles;
 
-import javafx.beans.property.Property;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.scene.control.cell.PropertyValueFactory;
 
-import javafx.util.Callback;
 import javafx.util.StringConverter;
 import org.example.model.dao.DbManage;
 import org.example.model.dao.DisciplinaDAO;
@@ -18,7 +16,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.beans.property.SimpleObjectProperty;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -58,7 +55,7 @@ public class TeacherController {
     private ObservableList<Aluno> listaAlunos = FXCollections.observableArrayList();
     private ObservableList<Disciplina> listaDeDisciplinas = FXCollections.observableArrayList();
 
-    public void inicializarAlunosDisciplinas() throws SQLException {
+    public void initialize() throws SQLException {
         listaDeDisciplinas.addAll(disciplinaDAO.listarDisciplinasPorProfessor("PROFESSOR002"));
 
         // Configurar como exibir as disciplinas no ComboBox
@@ -108,10 +105,38 @@ public class TeacherController {
     }
     @FXML
     private void atualizar() throws SQLException {
-        ;
+        Disciplina disciplinaSelecionada = comboUC.getValue();
+
+        if (disciplinaSelecionada == null) {
+            showAlert("Nenhuma Disciplina Selecionada", "Por favor, selecione uma disciplina primeiro.");
+            return;
+        }
+
+        try {
+            List<Aluno> alunos = alunoDAO.listarAlunosPorDisciplina(disciplinaSelecionada.getdCode());
+            listaAlunos.setAll(alunos);
+
+            if (alunos.isEmpty()) {
+                tabelaAlunos.setPlaceholder(new Label("Nenhum aluno encontrado"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            tabelaAlunos.setPlaceholder(new Label("Erro ao carregar dados"));
+            showAlert("Erro de Banco de Dados", "Falha ao carregar alunos: " + e.getMessage());
+        }
     }
 
     public void setSceneManager(SceneManager manager) {
         this.sceneManager = manager;
+    }
+
+    private void showAlert(String title, String message) {
+        Platform.runLater(() -> {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle(title);
+            alert.setHeaderText(null);
+            alert.setContentText(message);
+            alert.showAndWait();
+        });
     }
 }
