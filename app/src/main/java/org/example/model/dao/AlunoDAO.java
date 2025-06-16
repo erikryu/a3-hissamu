@@ -110,7 +110,7 @@ public class AlunoDAO {
             stmt.setString(1, dcode);
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
-                    Aluno aluno = new Aluno(rs.getString("ra"), rs.getString("nome"));
+                    Aluno aluno = new Aluno(rs.getString("nome"), rs.getString("ra"));
                     alunos.add(aluno);
                 }
             }

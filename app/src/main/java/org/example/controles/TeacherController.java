@@ -1,8 +1,11 @@
 package org.example.controles;
 
 import javafx.beans.property.Property;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import javafx.util.Callback;
+import javafx.util.StringConverter;
 import org.example.model.dao.DbManage;
 import org.example.model.dao.DisciplinaDAO;
 import org.example.model.entidades.Aluno;
@@ -18,6 +21,7 @@ import javafx.scene.control.*;
 import javafx.beans.property.SimpleObjectProperty;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class TeacherController {
     private SceneManager sceneManager;
@@ -28,7 +32,7 @@ public class TeacherController {
     private ComboBox<Disciplina> comboUC;
 
     @FXML
-    private TableView<Aluno> tableAlunos;
+    private TableView<Aluno> tabelaAlunos;
 
     @FXML
     private TableColumn<Aluno, String> colNome;
@@ -54,15 +58,37 @@ public class TeacherController {
     private ObservableList<Aluno> listaAlunos = FXCollections.observableArrayList();
     private ObservableList<Disciplina> listaDeDisciplinas = FXCollections.observableArrayList();
 
-    @FXML
-    public void initialize() throws SQLException {
-        // Simulando lista de UCs
-
+    public void inicializarAlunosDisciplinas() throws SQLException {
         listaDeDisciplinas.addAll(disciplinaDAO.listarDisciplinasPorProfessor("PROFESSOR002"));
+
+        // Configurar como exibir as disciplinas no ComboBox
+        comboUC.setCellFactory(lv -> new ListCell<Disciplina>() {
+            @Override
+            protected void updateItem(Disciplina disciplina, boolean empty) {
+                super.updateItem(disciplina, empty);
+                setText(empty || disciplina == null ? "" : disciplina.getNome());
+            }
+        });
+
+        // Configurar como exibir a disciplina selecionada
+        comboUC.setConverter(new StringConverter<Disciplina>() {
+            @Override
+            public String toString(Disciplina disciplina) {
+                return disciplina != null ? disciplina.getNome() : "";
+            }
+
+            @Override
+            public Disciplina fromString(String string) {
+                return null; // Não necessário para exibição
+            }
+        });
+
         comboUC.setItems(listaDeDisciplinas);
-        // Criar função em alunodao para listar alunos por professor
-        colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
-        colRa.setCellValueFactory(new PropertyValueFactory<>("ra"));
+
+        colNome.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNome()));
+        colRa.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getRa()));
+
+        tabelaAlunos.setItems(listaAlunos);
 
         comboUC.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, novaDisciplina) -> {
             if (novaDisciplina != null) {
@@ -73,26 +99,16 @@ public class TeacherController {
                 }
             }
         });
-
-        // Preenchendo a tabela
-        if (!listaDeDisciplinas.isEmpty()) {
-            comboUC.getSelectionModel().selectFirst();
-        }
     }
 
     private void carregarAlunosPorDisciplina(Disciplina disciplina) throws SQLException {
         listaAlunos.clear();
-        listaAlunos.addAll(alunoDAO.listarAlunosPorDisciplina(disciplina.getdCode()));
-        tableAlunos.setItems(listaAlunos);
+        List<Aluno> alunos = alunoDAO.listarAlunosPorDisciplina(disciplina.getdCode());
+        listaAlunos.addAll(alunos);
     }
     @FXML
-    private void SalvarAluno() {
-        // Lógica de salvar aluno (simulação por enquanto)
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Salvar");
-        alert.setHeaderText(null);
-        alert.setContentText("Dados dos alunos salvos com sucesso!");
-        alert.showAndWait();
+    private void atualizar() throws SQLException {
+        ;
     }
 
     public void setSceneManager(SceneManager manager) {
