@@ -30,4 +30,4 @@ Foi utilizado Java 23.0.3 junto com o JavaFx 21.0.7 e o Gradle como gerenciador 
 
 
 # Visão da lógica de Dados
-![Logo da empresa](projetosDados.jpeg)
+![Banco de Dados](projetosDados.jpg)
